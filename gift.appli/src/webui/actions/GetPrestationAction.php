@@ -1,8 +1,8 @@
 <?php
 
-namespace gift\appli\controlers;
+namespace giftbox\webui\actions;
 
-use gift\appli\models\Prestation;
+use giftbox\application_core\domain\entities\Prestation;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
