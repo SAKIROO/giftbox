@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use gift\appli\utils\Eloquent;
-use gift\appli\models\Prestation;
+use giftbox\application_core\domain\entities\Prestation;
+use giftbox\infrastructure\Eloquent;
 
 Eloquent::init(__DIR__ . '/../conf/gift.db.conf.ini');
 

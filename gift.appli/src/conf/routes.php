@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
+use giftbox\webui\actions\GetCategorieByIdAction;
+use giftbox\webui\actions\GetCategoriesAction;
+use giftbox\webui\actions\GetDetailCoffretAction;
+use giftbox\webui\actions\GetListeCoffretsAction;
+use giftbox\webui\actions\GetPrestationAction;
+use giftbox\webui\actions\HomeAction;
 use Slim\App;
-use gift\appli\controlers\HomeAction;
-use gift\appli\controlers\GetCategoriesAction;
-use gift\appli\controlers\GetCategorieByIdAction;
-use gift\appli\controlers\GetPrestationAction;
-use gift\appli\controlers\GetListeCoffretsAction;
-use gift\appli\controlers\GetDetailCoffretAction;
+
 
 return function (App $app) : App {
     $app->get('/', HomeAction::class);
