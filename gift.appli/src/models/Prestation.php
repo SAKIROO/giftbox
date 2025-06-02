@@ -10,7 +10,7 @@ class Prestation extends Model {
     public $timestamps = false;
     protected $fillable = ['libelle', 'description', 'tarif', 'unite', 'url', 'img', 'cat_id'];
 
-    public function coffrets(){
+    public function coffrets() {
         return $this->belongsToMany(
             CoffretType::class,
             'coffret2presta',
@@ -22,5 +22,4 @@ class Prestation extends Model {
     public function categorie() {
         return $this->belongsTo(Categorie::class, 'cat_id');
     }
-
 }

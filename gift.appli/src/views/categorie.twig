@@ -13,6 +13,7 @@
     <ul>
         {% for p in categorie.prestations %}
             <li>
+                ID : {{ p.id }} <br>
                 <a href="{{ routeParser.urlFor('prestation') ~ '?id=' ~ p.id }}"> {{ p.libelle }}</a> – {{ p.tarif }} €
             </li>
         {% endfor %}
