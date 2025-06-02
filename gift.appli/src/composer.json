@@ -1,5 +1,4 @@
 {
-
   "require" : {
     "php": ">=8.2",
     "slim/slim": "^4.0",
@@ -15,8 +14,10 @@
   },
   "autoload": {
     "psr-4" : {
-      "gift\\appli\\": "./"
+      "giftbox\\infrastructure\\": "./infrastructure",
+      "giftbox\\webui\\actions\\": "./webui/actions",
+        "giftbox\\application_core\\domain\\entities\\": "./application_core/domain/entities",
+      "giftbox\\appli\\": "./"
     }
-
   }
 }

@@ -29,7 +29,7 @@ services:
     env_file:
       - .database_env
     ports:
-      - "3306:3306"
+      - "3305:3305"
     networks:
       gift.net:
         aliases:
