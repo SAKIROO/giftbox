@@ -1,32 +1,69 @@
 <?php
-namespace giftbox\application_core\domain\entities;
 
-use gift\application_core\application\useCases\CatalogueInterface;
+namespace application_core\application\useCases;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use application_core\domain\entities\Categorie;
+use application_core\domain\entities\Prestation;
+use application_core\domain\exceptions\NotFoundException;
+use application_core\domain\exceptions\DatabaseException;
 
 class Catalogue implements CatalogueInterface {
 
     public function getCategories(): array {
-        return Categorie::all()->toArray();
+        try {
+            return Categorie::all()->toArray();
+        } catch (QueryException $e) {
+            throw new DatabaseException("Erreur base de données : " . $e->getMessage());
+        }
     }
 
-    public function getCategorieById(string $id): array {
-        return Categorie::with('prestations')->findOrFail($id)->toArray();
+    public function getCategorieById(int $id): array {
+        try {
+            return Categorie::with('prestations')->findOrFail($id)->toArray();
+        } catch (ModelNotFoundException $e) {
+            throw new NotFoundException("Catégorie non trouvée avec l'id: $id");
+        } catch (QueryException $e) {
+            throw new DatabaseException("Erreur base de données : " . $e->getMessage());
+        }
     }
 
     public function getPrestationById(string $id): array {
-        return Prestation::findOrFail($id)->toArray();
+        try {
+            return Prestation::findOrFail($id)->toArray();
+        } catch (ModelNotFoundException $e) {
+            throw new NotFoundException("Prestation non trouvée avec l'id: $id");
+        } catch (QueryException $e) {
+            throw new DatabaseException("Erreur base de données : " . $e->getMessage());
+        }
     }
 
-    public function getPrestationsbyCategorie(string $categ_id): array {
-        $cat = Categorie::with('prestations')->findOrFail($categ_id);
-        return $cat->prestations->toArray();
+    public function getPrestationsbyCategorie(int $categ_id): array {
+        try {
+            return Prestation::where('categorie_id', $categ_id)->get()->toArray();
+        } catch (QueryException $e) {
+            throw new DatabaseException("Erreur base de données : " . $e->getMessage());
+        }
     }
 
     public function getThemesCoffrets(): array {
-        return Theme::with('coffrets')->get()->toArray();
+        try {
+            // À compléter selon la structure de ta BD et modèle Coffret
+            return []; // Placeholder
+        } catch (QueryException $e) {
+            throw new DatabaseException("Erreur base de données : " . $e->getMessage());
+        }
     }
 
-    public function getCoffretById(string $id): array {
-        return CoffretType::with('prestations')->findOrFail($id)->toArray();
+    public function getCoffretById(int $id): array {
+        try {
+            // À compléter selon la structure de ta BD et modèle Coffret
+            return []; // Placeholder
+        } catch (ModelNotFoundException $e) {
+            throw new NotFoundException("Coffret non trouvé avec l'id: $id");
+        } catch (QueryException $e) {
+            throw new DatabaseException("Erreur base de données : " . $e->getMessage());
+        }
     }
 }
