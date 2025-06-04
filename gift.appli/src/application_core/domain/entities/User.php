@@ -2,23 +2,19 @@
 
 namespace giftbox\application_core\domain\entities;
 
-class User
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+
+class User extends Model
 {
-    private ?string $id;
-    private string $email;
-    private string $password;
-    private int $role;
+    use HasUuids;
 
-    public function __construct(?string $id, string $email, string $password, int $role)
-    {
-        $this->id = $id;
-        $this->email = $email;
-        $this->password = $password;
-        $this->role = $role;
-    }
+    protected $table = 'user';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    public $keyType = 'string';
 
-    public function getId(): ?string { return $this->id; }
-    public function getEmail(): string { return $this->email; }
-    public function getPassword(): string { return $this->password; }
-    public function getRole(): int { return $this->role; }
+    protected $fillable = ['user_id', 'password', 'role'];
+
+    public $timestamps = false;
 }

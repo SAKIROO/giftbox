@@ -24,7 +24,7 @@ class CsrfTokenProvider
         }
 
         if (!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
-            throw new CsrfException("Invalid CSRF token.");
+            throw new CsrfException("Invalide CSRF token.");
         }
 
         unset($_SESSION['csrf_token']);

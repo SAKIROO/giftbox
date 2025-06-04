@@ -4,8 +4,7 @@ namespace giftbox\application_core\application\providers;
 
 use giftbox\application_core\domain\entities\User;
 
-interface AuthProviderInterface
-{
+interface AuthProviderInterface {
     public function getSignedInUser(): ?User;
-    public function signin(string $email, string $password): bool;
+    public function signin(string $userId, string $password): bool;
 }

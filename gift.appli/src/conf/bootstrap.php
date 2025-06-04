@@ -1,6 +1,12 @@
 <?php
 
+use giftbox\application_core\application\providers\AuthProviderInterface;
+use giftbox\application_core\application\providers\SessionAuthProvider;
+use giftbox\application_core\application\useCases\AuthnService;
+use giftbox\application_core\application\useCases\AuthnServiceInterface;
+use giftbox\application_core\domain\repositories\UserRepositoryInterface;
 use giftbox\infrastructure\Eloquent;
+use giftbox\infrastructure\EloquentUserRepository;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
 use Slim\Views\TwigMiddleware;
@@ -23,8 +29,19 @@ $twig->getEnvironment()->addGlobal('routeParser', $app->getRouteCollector()->get
 $container->set(BoxService::class, function() {
     return new BoxService();
 });
+$container->set(UserRepositoryInterface::class, function() {
+    return new EloquentUserRepository();
+});
 
-(require_once __DIR__ . '/routes.php')($app);
+$container->set(AuthnServiceInterface::class, function($c) {
+    return new AuthnService($c->get(UserRepositoryInterface::class));
+});
 
-return $app;
+$container->set(AuthProviderInterface::class, function($c) {
+    return new SessionAuthProvider(
+        $c->get(AuthnServiceInterface::class),
+        $c->get(UserRepositoryInterface::class));
+});
+    (require_once __DIR__ . '/routes.php')($app);
 
+    return $app;

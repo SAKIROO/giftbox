@@ -17,7 +17,7 @@ use Slim\App;
 
 
 return function (App $app) : App {
-    $app->get('/', HomeAction::class);
+    $app->get('/', HomeAction::class)->setName('home');
     $app->get('/categories', GetCategoriesAction::class)->setName('categories');
     $app->get('/categorie/{id}', GetCategorieByIdAction::class)->setName('categorie');
     $app->get('/prestation', GetPrestationAction::class)->setName('prestation');
@@ -29,6 +29,5 @@ return function (App $app) : App {
     $app->get('/box/{id}', GetBoxAction::class);
     $app->post('/box/{id}/validate', ValidateBoxAction::class);
     $app->map(['GET', 'POST'], '/signin', SigninAction::class)->setName('signin');
-
     return $app;
 };

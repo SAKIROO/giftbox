@@ -33,7 +33,7 @@ class CreateBoxAction extends AbstractAction {
         try {
             CsrfTokenProvider::check($data['csrf'] ?? null);
         } catch (CsrfException $e) {
-            throw new HttpBadRequestException($rq, 'CSRF token error');
+            throw new HttpBadRequestException($rq, 'CSRF token erreur');
         }
 
         if (empty($data['libelle']) || empty($data['description'])) {

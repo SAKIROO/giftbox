@@ -4,36 +4,29 @@ namespace giftbox\application_core\application\useCases;
 
 use giftbox\application_core\application\useCases\AuthnServiceInterface;
 use giftbox\application_core\domain\entities\User;
-use giftbox\application_core\domain\exceptions\UserAlreadyExistsException;
 use giftbox\application_core\domain\repositories\UserRepositoryInterface;
 
 class AuthnService implements AuthnServiceInterface
 {
-    private UserRepositoryInterface $userRepo;
+    private UserRepositoryInterface $repo;
 
-    public function __construct(UserRepositoryInterface $userRepo)
-    {
-        $this->userRepo = $userRepo;
+    public function __construct(UserRepositoryInterface $repo) {
+        $this->repo = $repo;
     }
 
-    public function register(string $email, string $password): void
+    public function register(string $userId, string $password): void
     {
-        if ($this->userRepo->findByEmail($email)) {
-            throw new UserAlreadyExistsException("Utilisateur déjà existant.");
-        }
-
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $user = new User(null, $email, $hash, 1);
-        $this->userRepo->save($user);
+        $user = new User([
+            'user_id' => $userId,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'role' => 1
+        ]);
+        $this->repo->save($user);
     }
 
-    public function checkCredentials(string $email, string $password): bool
+    public function checkCredentials(string $userId, string $password): bool
     {
-        $user = $this->userRepo->findByEmail($email);
-        if (!$user) {
-            return false;
-        }
-
-        return password_verify($password, $user->getPassword());
+        $user = $this->repo->findByUserId($userId);
+        return $user && password_verify($password, $user->password);
     }
 }
