@@ -1,0 +1,14 @@
+
+{% block content %}
+    <h1>Coffret : {{ coffret.libelle }}</h1>
+    <p>{{ coffret.description }}</p>
+
+    <h2>Prestations incluses :</h2>
+    <ul>
+        {% for p in coffret.prestations %}
+            <li><a href="{{ routeParser.urlFor('prestation') ~ '?id=' ~ p.id }}">{{ p.libelle }}</a> - {{ p.tarif }} €</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ routeParser.urlFor('coffrets') }}">← Retour à la liste des coffrets</a>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catégorie</title>
+</head>
+<body>
+    <h1>Catégorie : {{ categorie.libelle}}</h1>
+    <p>Description : {{ categorie.description }}</p>
+
+    <h2>Prestations de cette catégorie :</h2>
+    <ul>
+        {% for p in categorie.prestations %}
+            <li>
+                ID : {{ p.id }} <br>
+                <a href="{{ routeParser.urlFor('prestation') ~ '?id=' ~ p.id }}"> {{ p.libelle }}</a> – {{ p.tarif }} €
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ routeParser.urlFor('categories') }}">← Retour à la liste des catégories</a>
+
+
+</body>
+</html>

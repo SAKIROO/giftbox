@@ -1,0 +1,17 @@
+
+{% block content %}
+    <h1>Liste des coffrets par thème</h1>
+
+    {% for theme in themes %}
+        <h2>{{ theme.libelle }}</h2>
+        <ul>
+            {% for c in theme.coffrets %}
+                <li>
+                    <a href="{{ routeParser.urlFor('coffret', {'id': c.id}) }}">
+                        {{ c.libelle }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}

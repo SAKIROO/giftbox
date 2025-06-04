@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/gift.appli/src" isTestSource="false" packagePrefix="gift" />
       <sourceFolder url="file://$MODULE_DIR$/gift.appli/src" isTestSource="false" packagePrefix="giftbox" />
     </content>
     <orderEntry type="inheritedJdk" />

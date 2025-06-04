@@ -1,0 +1,15 @@
+<h1>Détails de la box : {{ box.libelle }}</h1>
+<p>Description : {{ box.description }}</p>
+<p>Montant : {{ box.montant }}</p>
+<p>Statut : {{ box.statut }}</p>
+<h2>Prestations :</h2>
+<ul>
+    {% for p in box.prestations %}
+        <li>{{ p.nom }} (Quantité : {{ p.pivot.quantite }})</li>
+    {% endfor %}
+</ul>
+{% if box.statut == 1 %}
+    <form method="POST" action="/box/{{ box.id }}/validate">
+        <button type="submit">Valider la box</button>
+    </form>
+{% endif %}

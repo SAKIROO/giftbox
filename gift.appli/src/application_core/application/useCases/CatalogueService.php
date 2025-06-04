@@ -1,18 +1,19 @@
 <?php
 
-namespace giftbox\application_core\domain\entities;
+namespace giftbox\application_core\application\useCases;
 
 
 
+use giftbox\application_core\domain\entities\Categorie;
+use giftbox\application_core\domain\entities\CoffretType;
+use giftbox\application_core\domain\entities\Prestation;
+use giftbox\application_core\domain\exceptions\DatabaseException;
+use giftbox\application_core\domain\exceptions\NotFoundException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
-use giftbox\application_core\domain\exceptions\NotFoundException;
-use giftbox\application_core\application\useCases\CatalogueInterface;
-use giftbox\application_core\domain\exceptions\DatabaseException;
 
 
-
-class Catalogue implements CatalogueInterface {
+class CatalogueService implements CatalogueServiceInterface {
 
     public function getCategories(): array {
         try {

@@ -1,0 +1,6 @@
+<h1>Ajouter une prestation à la box {{ box.libelle }}</h1>
+<form method="POST" action="/box/{{ box.id }}/add">
+    <input type="text" name="prestation_id" placeholder="ID de la prestation" required>
+    <input type="number" name="quantite" placeholder="Quantité" required>
+    <button type="submit">Ajouter</button>
+</form>

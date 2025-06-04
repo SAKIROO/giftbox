@@ -1,6 +1,6 @@
 <?php
 
-namespace giftbox\application_core\application\useCases;
+namespace gift\application_core\application\useCases;
 
 interface CatalogueInterface {
     public function getCategories(): array;

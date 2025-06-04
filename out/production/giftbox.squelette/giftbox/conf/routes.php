@@ -7,10 +7,6 @@ use giftbox\webui\actions\GetDetailCoffretAction;
 use giftbox\webui\actions\GetListeCoffretsAction;
 use giftbox\webui\actions\GetPrestationAction;
 use giftbox\webui\actions\HomeAction;
-use giftbox\webui\actions\CreateBoxAction;
-use giftbox\webui\actions\AddPrestationToBoxAction;
-use giftbox\webui\actions\GetBoxAction;
-use giftbox\webui\actions\ValidateBoxAction;
 use Slim\App;
 
 
@@ -21,10 +17,6 @@ return function (App $app) : App {
     $app->get('/prestation', GetPrestationAction::class)->setName('prestation');
     $app->get('/coffrets', GetListeCoffretsAction::class)->setName('coffrets');
     $app->get('/coffret/{id}', GetDetailCoffretAction::class)->setName('coffret');
-    $app->map(['GET', 'POST'], '/box', CreateBoxAction::class);
-    $app->map(['GET', 'POST'], '/box/{id}/add', AddPrestationToBoxAction::class);
-    $app->get('/box/{id}', GetBoxAction::class);
-    $app->post('/box/{id}/validate', ValidateBoxAction::class);
 
     return $app;
 };

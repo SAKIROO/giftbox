@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prestation</title>
+</head>
+<body>
+    <h1>Prestation : {{ prestation.libelle }}</h1>
+    <p>Description : {{ prestation.description }}</p>
+    <p>Prix : {{ prestation.tarif }} €</p>
+
+    <h1>Catégorie : {{ categorie.libelle }}</h1>
+    <p>{{ categorie.description }}</p>
+
+    <a href="{{ routeParser.urlFor('categories') }}">← Retour à la liste des catégories</a>
+
+
+
+</body>
+</html>
