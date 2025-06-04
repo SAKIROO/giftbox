@@ -30,6 +30,7 @@ class CreateBoxAction extends AbstractAction {
 
         try {
             $data['createur_id'] = 1; // Utilisateur fictif
+            $data['token'] = bin2hex(random_bytes(16)); // Génération d'un token aléatoire
             $box = $this->service->createBox($data);
             return $rs
                 ->withHeader('Location', '/box/' . $box['id'])

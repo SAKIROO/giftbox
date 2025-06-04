@@ -21,9 +21,9 @@ class Box extends Model {
     public function prestations() {
         return $this->belongsToMany(
             Prestation::class,
-            'box_prestations',
+            'box2presta',
             'box_id',
-            'prestation_id'
+            'presta_id'
         )->withPivot('quantite');
     }
 

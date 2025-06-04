@@ -16,10 +16,11 @@ class BoxService implements BoxServiceInterface {
             $box = new Box();
             $box->libelle = $data['libelle'];
             $box->description = $data['description'];
-            $box->kdo = $data['kdo'] ?? false;
+            $box->kdo = isset($data['kdo']) ? 1 : 0;
             $box->message_kdo = $data['message_kdo'] ?? null;
             $box->statut = 1; // En construction
             $box->createur_id = $data['createur_id'];
+            $box->token = $data['token'];
             $box->save();
             return $box->toArray();
         } catch (QueryException $e) {
