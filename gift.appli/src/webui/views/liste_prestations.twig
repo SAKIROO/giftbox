@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Prestations</title>
+</head>
+<body>
+    <h1>Liste de toutes les prestations</h1>
+    <ul>
+        {% for prestation in prestations %}
+            <li>
+                <a href="{{ routeParser.urlFor('prestation') ~ '?id=' ~ prestation.id }}">
+                    {{ prestation.libelle }}
+                </a> – {{ prestation.tarif }} €
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ routeParser.urlFor('categories') }}">← Retour aux catégories</a>
+</body>
+</html>
