@@ -11,6 +11,7 @@ use giftbox\webui\actions\HomeAction;
 use giftbox\webui\actions\CreateBoxAction;
 use giftbox\webui\actions\AddPrestationToBoxAction;
 use giftbox\webui\actions\GetBoxAction;
+use giftbox\webui\actions\SigninAction;
 use giftbox\webui\actions\ValidateBoxAction;
 use Slim\App;
 
