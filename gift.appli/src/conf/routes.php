@@ -25,6 +25,7 @@ return function (App $app) : App {
     $app->map(['GET', 'POST'], '/box/{id}/add', AddPrestationToBoxAction::class);
     $app->get('/box/{id}', GetBoxAction::class);
     $app->post('/box/{id}/validate', ValidateBoxAction::class);
+    $app->map(['GET', 'POST'], '/signin', SigninAction::class)->setName('signin');
 
     return $app;
 };
