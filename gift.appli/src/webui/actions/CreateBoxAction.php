@@ -2,7 +2,9 @@
 
 namespace giftbox\webui\actions;
 
+use giftbox\application_core\application\providers\CsrfTokenProvider;
 use giftbox\application_core\application\useCases\BoxService;
+use giftbox\application_core\domain\exceptions\CsrfException;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpBadRequestException;
@@ -20,17 +22,27 @@ class CreateBoxAction extends AbstractAction {
         $view = Twig::fromRequest($rq);
 
         if ($rq->getMethod() === 'GET') {
-            return $view->render($rs, 'box_create.twig');
+            $csrf = CsrfTokenProvider::generate();
+            return $view->render($rs, 'box_create.twig', [
+                'csrf' => $csrf
+            ]);
         }
 
         $data = $rq->getParsedBody();
+
+        try {
+            CsrfTokenProvider::check($data['csrf'] ?? null);
+        } catch (CsrfException $e) {
+            throw new HttpBadRequestException($rq, 'CSRF token error');
+        }
+
         if (empty($data['libelle']) || empty($data['description'])) {
             throw new HttpBadRequestException($rq, "Paramètres manquants");
         }
 
         try {
-            $data['createur_id'] = 1; // Utilisateur fictif
-            $data['token'] = bin2hex(random_bytes(16)); // Génération d'un token aléatoire
+            $data['createur_id'] = 1;
+            $data['token'] = bin2hex(random_bytes(16));
             $box = $this->service->createBox($data);
             return $rs
                 ->withHeader('Location', '/box/' . $box['id'])

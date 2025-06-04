@@ -4,5 +4,6 @@
     <textarea name="description" placeholder="Description" required></textarea>
     <label><input type="checkbox" name="kdo"> Cadeau</label>
     <input type="text" name="message_kdo" placeholder="Message cadeau">
+    <input type="hidden" name="csrf" value="{{ csrf }}">
     <button type="submit">Créer</button>
 </form>
