@@ -1,0 +1,80 @@
+body {
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    text-align: center;
+    padding: 50px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.menu a {
+    padding: 15px 25px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #2980b9;
+}
+
+.menuCategorie{
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.SignIn a{
+    padding: 15px 25px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.prestation{
+    margin-bottom: 40px;
+}
+
+.menuRetour{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.menuRetour a{
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+p {
+    font-style: italic;
+    color: #555;
+}
+
+

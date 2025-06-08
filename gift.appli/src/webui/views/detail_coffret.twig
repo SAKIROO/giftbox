@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/style.css">
 
 {% block content %}
     <h1>Coffret : {{ coffret.libelle }}</h1>
@@ -5,10 +6,14 @@
 
     <h2>Prestations incluses :</h2>
     <ul>
+        <div class="menu menuCategorie">
         {% for p in coffret.prestations %}
-            <li><a href="{{ routeParser.urlFor('prestation') ~ '?id=' ~ p.id }}">{{ p.libelle }}</a> - {{ p.tarif }} €</li>
+            <a href="{{ routeParser.urlFor('prestation') ~ '?id=' ~ p.id }}">{{ p.libelle }} - {{ p.tarif }} €</a>
         {% endfor %}
+        </div>
     </ul>
 
-    <a href="{{ routeParser.urlFor('coffrets') }}">← Retour à la liste des coffrets</a>
+    <div class="menuRetour">
+        <a href="{{ routeParser.urlFor('coffrets') }}">← Retour à la liste des coffrets</a>
+    </div>
 {% endblock %}
