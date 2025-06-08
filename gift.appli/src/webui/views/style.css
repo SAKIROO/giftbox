@@ -72,6 +72,16 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
+.menuAPI a{
+    display: ruby-text;
+    padding: 10px 15px;
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
 p {
     font-style: italic;
     color: #555;

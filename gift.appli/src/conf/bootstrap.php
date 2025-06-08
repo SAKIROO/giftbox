@@ -43,6 +43,8 @@ $container->set(AuthProviderInterface::class, function($c) {
         $c->get(AuthnServiceInterface::class),
         $c->get(UserRepositoryInterface::class));
 });
-    (require_once __DIR__ . '/routes.php')($app);
+
+(require_once __DIR__ . '/routes.php')($app);
+(require_once __DIR__ . '/../api/routes.php')($app);
 
     return $app;
