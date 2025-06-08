@@ -1,7 +1,7 @@
 <?php
 namespace giftbox\api\actions;
 
-use giftbox\application_core\domain\entities\CoffretType;
+use giftbox\application_core\domain\entities\Box;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpNotFoundException;
@@ -10,7 +10,7 @@ class GetBoxByIdApiAction {
     public function __invoke(Request $rq, Response $rs, array $args): Response {
         $id = $args['id'] ?? null;
 
-        $box = CoffretType::with('prestations')->find($id);
+        $box = Box::with('prestations')->find($id);
 
         if (!$box) {
             throw new HttpNotFoundException($rq, "Coffret non trouvé");
@@ -46,3 +46,4 @@ class GetBoxByIdApiAction {
         return $rs->withHeader('Content-Type', 'application/json');
     }
 }
+
