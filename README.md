@@ -32,6 +32,10 @@ Faire de même avec /sql/gift.data.sql
 Accéder à l'appli :  
 http://localhost:7777
 
+Pour se connecter :  
+aurore06@example.org  
+aurore06
+
 ## Liste des fonctionnalités
 - [x] 1-Afficher la liste des presations
 - [x] 2-Afficher le détail d'une prestation
